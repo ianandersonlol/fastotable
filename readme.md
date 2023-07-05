@@ -1,58 +1,48 @@
-# Documentation for fastaconvert.py
+# FastoTable Documentation
 
-The `fastaconvert.py` is a Python script used to convert a FASTA format file into a CSV (Comma-Separated Values) format file. The CSV file will contain the names of proteins and their corresponding sequences.
+FastoTable is a Python script that converts FASTA files (a common format for DNA and protein sequence data) into CSV files. The script reads a FASTA file and writes out a CSV file containing two columns: 'Protein Name' and 'Sequence'.
 
 ## Table of Contents
+1. [Prerequisites](#prerequisites)
+2. [How to Use](#how-to-use)
+3. [Function Documentation](#function-documentation)
 
-- [Dependencies](#dependencies)
-- [Functions](#functions)
-  - [fasta_to_csv](#fasta_to_csv)
-- [Usage](#usage)
-- [Example](#example)
+## Prerequisites
+<a name="prerequisites"></a>
 
-## Dependencies
+Ensure that you have Python installed on your system. The script is written in Python and no additional libraries are needed.
 
-To use this script, make sure you have Python installed along with the `csv` module. The `csv` module is part of Python's standard library so you don't need to install it separately.
+## How to Use
+<a name="how-to-use"></a>
 
-## Functions
+To use the script, you need to pass the path to the FASTA file as a command-line argument.
 
-### fasta_to_csv
+Usage:
 
-**Description**
-
-The function `fasta_to_csv(fasta_file, csv_file)` is used to convert a FASTA file into a CSV file.
-
-**Parameters**
-
-- `fasta_file` (str): The path to the FASTA format file.
-- `csv_file` (str): The path where the CSV format file will be saved.
-
-**Return**
-
-The function doesn't return any value, it writes the proteins and their sequences into a CSV file.
-
-## Usage
-
-To use the `fasta_to_csv` function, you need to provide the paths to the FASTA and CSV files. The FASTA file is the input and the CSV file is the output.
-
-Here is the basic usage:
-
-```python
-fasta_file = 'path_to_your_fasta_file.fasta'
-csv_file = 'path_to_your_csv_file.csv'
-fasta_to_csv(fasta_file, csv_file)
+```bash
+python fastotable.py input.fasta
 ```
 
-Replace `'path_to_your_fasta_file.fasta'` and `'path_to_your_csv_file.csv'` with the paths to your FASTA and CSV files respectively.
+Where `input.fasta` should be replaced with the path to your FASTA file.
 
-## Example
+The script will create a CSV file in the same directory as the FASTA file, with the same name but a "_table.csv" suffix. For example, if your FASTA file is named "sequences.fasta", the CSV file will be "sequences_table.csv".
 
-Here is an example of how to use the `fasta_to_csv` function:
+## Function Documentation
+<a name="function-documentation"></a>
+
+### fasta_to_csv function
 
 ```python
-fasta_file = 'araD.fasta'
-csv_file = 'araD_output.csv'
-fasta_to_csv(fasta_file, csv_file)
+def fasta_to_csv(fasta_file, csv_file):
 ```
 
-In this example, the script reads the file `araD.fasta` and converts it into a CSV file `araD_output.csv`. The CSV file will contain two columns: 'Protein Name' and 'Sequence'.
+This function takes in the path to a FASTA file and a CSV file, reads the FASTA file, and writes the data to a CSV file.
+
+**Parameters:**
+
+- `fasta_file` (str): The path to the FASTA file.
+- `csv_file` (str): The path to the output CSV file.
+
+This function does not return any value. It writes the data directly to the CSV file.
+
+The CSV file has two columns: 'Protein Name' and 'Sequence'. 'Protein Name' is the header line in the FASTA file (the line that starts with ">"), and 'Sequence' is the sequence of characters that follow the header line.
